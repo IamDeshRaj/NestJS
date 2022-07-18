@@ -16,14 +16,20 @@ describe('Authentication Controller (e2e)', () => {
     await app.init();
   });
 
-  it('Testing signup', () => {
+  it('Testing signup', async () => {
     const emailId = 'abcd3@gmail.com';
-    return request(app.getHttpServer())
-      .post('/auth/signup').send({email:emailId, password: 'abcdt'} as CreateUser)
-      .expect(201).then((res) => {
-        const {id, email} = res.body;
-        expect(id).toBeDefined();
-        expect(email).toEqual(emailId);
-      });
+    const res = await request(app.getHttpServer())
+      .post('/auth/signup').send({ email: emailId, password: 'abcdt' } as CreateUser)
+      .expect(201);
+
+    const { id, email } = res.body;
+    expect(id).toBeDefined();
+    expect(email).toEqual(emailId);
+    const cookie = res.get('Set-Cookie');
+
+    const {body} = await request(app.getHttpServer())
+      .get('/auth/whoami').set('Cookie', cookie).expect(200);
+
+    expect(body.email).toEqual(email);
   });
 });
