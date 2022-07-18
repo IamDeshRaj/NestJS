@@ -1,0 +1,42 @@
+### get request
+GET http://localhost:3000/auth?email=d@x.com
+
+### get request
+GET http://localhost:3000/auth/3
+
+### get request
+GET http://localhost:3000/auth/whoami
+
+### get request
+GET http://localhost:3000/auth/signout
+
+### Post request
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+    "email" : "d@x.com",
+    "password" : "sdfafd3qw"
+}
+
+### Post request
+POST http://localhost:3000/auth/signin
+Content-Type: application/json
+
+{
+    "email" : "d@x.com",
+    "password" : "sdfafd3qw"
+}
+
+### PATCH request
+PATCH  http://localhost:3000/auth/1
+Content-Type: application/json
+
+{
+    "email" : "admin@first.com"
+}
+
+
+### get request
+DELETE http://localhost:3000/auth/3
+
