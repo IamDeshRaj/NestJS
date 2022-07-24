@@ -15,4 +15,15 @@ export class ReportsService {
         report.user = user;
         return this.repo.save(report);
     }
+
+    findOne(id: number) {
+        if(!id){
+            return null;
+        }
+        const report = this.repo.findOne({ where: { id: id } });
+        if (!report) {
+            throw new Error('Report not found');
+        }
+        return report;
+    }
 }
