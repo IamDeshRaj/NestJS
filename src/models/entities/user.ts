@@ -1,6 +1,7 @@
 import { Exclude } from "class-transformer";
 import { IsEmail } from "class-validator";
-import { AfterInsert, Column, Entity, PrimaryGeneratedColumn, Unique } from "typeorm";
+import { AfterInsert, Column, Entity, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
+import { Report } from "./report";
 
 @Entity()
 export class User {
@@ -16,6 +17,9 @@ export class User {
     @Column()
     @Exclude()
     password: string;
+
+    @OneToMany(()=> Report, (report) => report.user) // First function helps to remove circular dependency
+    reports: Report[];
 
     @AfterInsert()
     logId(){

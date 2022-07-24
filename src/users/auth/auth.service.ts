@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { randomBytes, scrypt, scryptSync } from 'crypto';
-import { CreateUser } from 'src/models/request/create-user';
+import { randomBytes, scryptSync } from 'crypto';
+import { CreateUser } from '../../models/request/create-user';
 import { UsersService } from '../users.service';
 
 @Injectable()

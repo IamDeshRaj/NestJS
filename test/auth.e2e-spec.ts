@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from './../src/app.module';
-import { CreateUser } from './../src/models/request/create-user';
+import { CreateUser } from '../src/models/request/create-user';
 
 describe('Authentication Controller (e2e)', () => {
   let app: INestApplication;
@@ -27,7 +27,7 @@ describe('Authentication Controller (e2e)', () => {
     expect(email).toEqual(emailId);
     const cookie = res.get('Set-Cookie');
 
-    const {body} = await request(app.getHttpServer())
+    const { body } = await request(app.getHttpServer())
       .get('/auth/whoami').set('Cookie', cookie).expect(200);
 
     expect(body.email).toEqual(email);
