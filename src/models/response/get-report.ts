@@ -29,4 +29,7 @@ export class GetReport {
 
     @Expose()
     mileage: number;
+
+    @Expose()
+    approved: boolean;
 }

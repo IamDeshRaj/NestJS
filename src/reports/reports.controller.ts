@@ -7,7 +7,7 @@ import { ReportsService } from './reports.service';
 import { CustomSerializer } from '../interceptors/custom-serializer.interceptor';
 import { GetReport } from '../models/response/get-report';
 import { ApproveReport } from '../models/request/report/approve-report';
-import { AdminGuard } from 'src/guards/admin.guard';
+import { AdminGuard } from '../guards/admin.guard';
 
 @Controller('reports')
 export class ReportsController {
@@ -29,6 +29,7 @@ export class ReportsController {
 
     @Patch('/:id')
     @UseGuards(AdminGuard)
+    @CustomSerializer(GetReport)
     approveReport(@Param('id') id: string, @Body() body: ApproveReport, @CurrentUser() user: User) {
         return this.reportService.approveReport(parseInt(id), body.approved);
     }

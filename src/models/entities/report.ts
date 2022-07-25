@@ -6,7 +6,7 @@ export class Report {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(() => User, (user) => user.reports) // First function helps to remove circular dependency
+    @ManyToOne(() => User, (user) => user.reports, { eager: true }) // First function helps to remove circular dependency
     user: User;
 
     @Column()
