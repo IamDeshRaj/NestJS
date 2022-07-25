@@ -1,7 +1,7 @@
 import { Exclude } from "class-transformer";
 import { IsBoolean, IsEmail } from "class-validator";
 import { AfterInsert, Column, Entity, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
-import { Report } from "./report";
+import { Report } from "./report.entity";
 
 @Entity()
 export class User {

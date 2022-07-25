@@ -3,7 +3,7 @@ import { GetUser } from '../models/response/get-user';
 import { CurrentUser } from '../decorator/current-user.decorator';
 import { AuthGuard } from '../guards/auth.guard';
 import { CustomSerializer } from '../interceptors/custom-serializer.interceptor';
-import { User } from '../models/entities/user';
+import { User } from '../models/entities/user.entity';
 import { CreateUser } from '../models/request/user/create-user';
 import { UpdateUser } from '../models/request/user/update-user';
 import { AuthService } from './auth/auth.service';

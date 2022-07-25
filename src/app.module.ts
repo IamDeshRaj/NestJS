@@ -6,8 +6,6 @@ import { ReportsModule } from './reports/reports.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { APP_PIPE } from '@nestjs/core';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { User } from './models/entities/user';
-import { Report } from './models/entities/report';
 const cookiesSession = require('cookie-session');
 
 @Module({
@@ -15,17 +13,7 @@ const cookiesSession = require('cookie-session');
   ConfigModule.forRoot({
     isGlobal: true,
     envFilePath: `.env.${process.env.NODE_ENV}`
-  }), TypeOrmModule.forRootAsync({
-    inject: [ConfigService],
-    useFactory: (config: ConfigService) => {
-      return {
-        type: 'sqlite',
-        database: config.get<string>('DB_NAME'),
-        entities: [User, Report],
-        synchronize: true
-      }
-    }
-  })],
+  }), TypeOrmModule.forRoot()],
   controllers: [AppController],
   providers: [AppService, {
     provide: APP_PIPE,
@@ -35,9 +23,10 @@ const cookiesSession = require('cookie-session');
   }],
 })
 export class AppModule {
+  constructor(private config: ConfigService) {}
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(cookiesSession({
-      keys: ['asdjfnke']
+      keys: [this.config.get<string>('COOKIE_KEY')]
     })).forRoutes('*');
   }
 }

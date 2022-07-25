@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
 import { CurrentUser } from '../decorator/current-user.decorator';
-import { User } from '../models/entities/user';
+import { User } from '../models/entities/user.entity';
 import { AuthGuard } from '../guards/auth.guard';
 import { CreateReport } from '../models/request/report/create-report';
 import { ReportsService } from './reports.service';
