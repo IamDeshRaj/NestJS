@@ -1,5 +1,5 @@
 import { Exclude } from "class-transformer";
-import { IsEmail } from "class-validator";
+import { IsBoolean, IsEmail } from "class-validator";
 import { AfterInsert, Column, Entity, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { Report } from "./report";
 
@@ -18,11 +18,15 @@ export class User {
     @Exclude()
     password: string;
 
-    @OneToMany(()=> Report, (report) => report.user) // First function helps to remove circular dependency
+    @Column({ default: true })
+    @IsBoolean()
+    admin: boolean;
+
+    @OneToMany(() => Report, (report) => report.user) // First function helps to remove circular dependency
     reports: Report[];
 
     @AfterInsert()
-    logId(){
+    logId() {
         console.log(`User saved with ${this.id}`);
     }
 }

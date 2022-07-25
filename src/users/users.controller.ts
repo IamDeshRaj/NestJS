@@ -4,8 +4,8 @@ import { CurrentUser } from '../decorator/current-user.decorator';
 import { AuthGuard } from '../guards/auth.guard';
 import { CustomSerializer } from '../interceptors/custom-serializer.interceptor';
 import { User } from '../models/entities/user';
-import { CreateUser } from '../models/request/create-user';
-import { UpdateUser } from '../models/request/update-user';
+import { CreateUser } from '../models/request/user/create-user';
+import { UpdateUser } from '../models/request/user/update-user';
 import { AuthService } from './auth/auth.service';
 import { UsersService } from './users.service';
 

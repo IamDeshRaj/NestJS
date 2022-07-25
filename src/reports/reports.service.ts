@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Report } from '../models/entities/report';
 import { User } from '../models/entities/user';
-import { CreateReport } from '../models/request/create-report';
+import { CreateReport } from '../models/request/report/create-report';
 import { Repository } from 'typeorm';
 
 @Injectable()
@@ -16,14 +16,20 @@ export class ReportsService {
         return this.repo.save(report);
     }
 
-    findOne(id: number) {
+    async findOne(id: number) {
         if(!id){
             return null;
         }
-        const report = this.repo.findOne({ where: { id: id } });
+        const report = await this.repo.findOne({ where: { id: id } });
         if (!report) {
             throw new Error('Report not found');
         }
         return report;
+    }
+
+    async approveReport(id: number, approved: boolean) {
+        const report = await this.findOne(id);
+        report.approved = approved;
+        return this.repo.save(report);
     }
 }
