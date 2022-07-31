@@ -9,6 +9,12 @@ global.beforeEach(async () => {
     } catch (error) {}
 });
 
+global.afterEach(async () => {
+    try {
+        await rm(join(__dirname, '..', 'test.sqlite'));
+    } catch (error) {}
+});
+
 // global.afterEach(async () => {
 //     const conn = getConnection();
 //     await conn.close();
