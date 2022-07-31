@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from './../src/app.module';
-import { CreateUser } from '../src/models/request/user/create-user';
+import { CreateUser } from '@mypleaks/ms-models';
 
 describe('Authentication Controller (e2e)', () => {
   let app: INestApplication;

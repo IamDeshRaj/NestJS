@@ -2,12 +2,10 @@ import { Body, Controller, Get, Param, Patch, Post, UseGuards } from '@nestjs/co
 import { CurrentUser } from '../decorator/current-user.decorator';
 import { User } from '../models/entities/user.entity';
 import { AuthGuard } from '../guards/auth.guard';
-import { CreateReport } from '../models/request/report/create-report';
 import { ReportsService } from './reports.service';
 import { CustomSerializer } from '../interceptors/custom-serializer.interceptor';
-import { GetReport } from '../models/response/get-report';
-import { ApproveReport } from '../models/request/report/approve-report';
 import { AdminGuard } from '../guards/admin.guard';
+import { ApproveReport, CreateReport, GetReport } from '@mypleaks/ms-models';
 
 @Controller('reports')
 export class ReportsController {

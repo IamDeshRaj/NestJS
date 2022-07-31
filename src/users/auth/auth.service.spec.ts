@@ -1,5 +1,5 @@
+import { CreateUser } from '@mypleaks/ms-models';
 import { Test } from '@nestjs/testing';
-import { CreateUser } from '../../models/request/user/create-user';
 import { User } from '../../models/entities/user.entity';
 import { UsersService } from '../users.service';
 import { AuthService } from './auth.service';

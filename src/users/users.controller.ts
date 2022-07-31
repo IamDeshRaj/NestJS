@@ -1,13 +1,11 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query, Session, UseGuards, UseInterceptors } from '@nestjs/common';
-import { GetUser } from '../models/response/get-user';
 import { CurrentUser } from '../decorator/current-user.decorator';
 import { AuthGuard } from '../guards/auth.guard';
 import { CustomSerializer } from '../interceptors/custom-serializer.interceptor';
 import { User } from '../models/entities/user.entity';
-import { CreateUser } from '../models/request/user/create-user';
-import { UpdateUser } from '../models/request/user/update-user';
 import { AuthService } from './auth/auth.service';
 import { UsersService } from './users.service';
+import { CreateUser, GetUser, UpdateUser } from '@mypleaks/ms-models';
 
 @Controller('auth')
 export class UsersController {

@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Report } from '../models/entities/report.entity';
 import { User } from '../models/entities/user.entity';
-import { CreateReport } from '../models/request/report/create-report';
 import { Repository } from 'typeorm';
+import { CreateReport } from '@mypleaks/ms-models';
 
 @Injectable()
 export class ReportsService {

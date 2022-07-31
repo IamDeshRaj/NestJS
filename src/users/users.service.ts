@@ -1,8 +1,8 @@
+import { CreateUser } from '@mypleaks/ms-models';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '../models/entities/user.entity';
-import { CreateUser } from '../models/request/user/create-user';
 
 @Injectable()
 export class UsersService {
