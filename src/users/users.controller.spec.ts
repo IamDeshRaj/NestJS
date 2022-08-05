@@ -1,7 +1,7 @@
 import { CreateUser } from '@mypleaks/ms-models';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthService } from './auth/auth.service';
-import { User } from './user.schema';
+import { User } from '../schema/user.schema';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 

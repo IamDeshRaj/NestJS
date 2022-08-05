@@ -4,8 +4,7 @@ import { UsersController } from './users.controller';
 import { AuthService } from './auth/auth.service';
 import { CurrentUserMiddleware } from './middlewares/current-user.middleware';
 import { UsersRepository } from './users.repository';
-import { User, UserSchema } from './user.schema';
-import { Mongoose } from 'mongoose';
+import { User, UserSchema } from '../schema/user.schema';
 import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({

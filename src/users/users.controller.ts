@@ -4,8 +4,8 @@ import { AuthGuard } from '../guards/auth.guard';
 import { CustomSerializer } from '../interceptors/custom-serializer.interceptor';
 import { AuthService } from './auth/auth.service';
 import { UsersService } from './users.service';
-import { CreateUser, GetUser, UpdateUser } from '@mypleaks/ms-models';
-import { User } from './user.schema';
+import { CreateUser } from '@mypleaks/ms-models';
+import { User } from '../schema/user.schema';
 
 @Controller('auth')
 export class UsersController {
@@ -23,6 +23,11 @@ export class UsersController {
         const user = await this.authService.signup(createUser);
         session.userId = user.id;
         return user;
+    }
+
+    @Get()
+    async getAll(): Promise<User[]> {
+        return await this.usersService.findAll();
     }
 
     @Get('/signout')

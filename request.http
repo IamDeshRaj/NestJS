@@ -15,8 +15,25 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-    "email" : "d@x.com",
+    "email" : "d123@x.com",
     "password" : "sdfafd3qw"
+}
+
+### get request
+GET http://localhost:3000/auth
+
+### Post request
+GET http://localhost:3000/report
+
+### Post request
+POST http://localhost:3000/report
+Content-Type: application/json
+
+{
+    "make": "BMW",
+    "year": "2022",
+    "mileage": "10000",
+    "user": "62ee71415511cb9a2d342468"
 }
 
 ### Post request

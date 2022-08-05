@@ -5,10 +5,11 @@ import { UsersModule } from './users/users.module';
 import { APP_PIPE } from '@nestjs/core';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ReportModule } from './report/report.module';
 const cookiesSession = require('cookie-session');
 
 @Module({
-  imports: [UsersModule,
+  imports: [UsersModule, ReportModule,
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: `.env.${process.env.NODE_ENV}`

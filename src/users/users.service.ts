@@ -1,20 +1,21 @@
 import { CreateUser } from '@mypleaks/ms-models';
 import { Injectable } from '@nestjs/common';
-import { User } from './user.schema';
+import { User } from '../schema/user.schema';
 import { UsersRepository } from './users.repository';
 
 @Injectable()
 export class UsersService {
 
-    constructor(private repo: UsersRepository) { }
+    constructor(private usersRepository: UsersRepository) { }
 
     createUser(createUser: CreateUser): Promise<User> {
-        return this.repo.create(createUser);
+        return this.usersRepository.create(createUser);
     }
 
-    findAll(): Promise<User[]> {
-        return this.repo.findAll();
+    async findAll(): Promise<User[]> {
+        return await this.usersRepository.findAll();
     }
+
     /*findOne(id: number) {
         if(!id){
             return null;
