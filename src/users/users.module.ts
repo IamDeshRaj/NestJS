@@ -1,14 +1,16 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
 import { AuthService } from './auth/auth.service';
-import { User } from '../models/entities/user.entity';
 import { CurrentUserMiddleware } from './middlewares/current-user.middleware';
+import { UsersRepository } from './users.repository';
+import { User, UserSchema } from './user.schema';
+import { Mongoose } from 'mongoose';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User])],
-  providers: [UsersService, AuthService],
+  imports: [MongooseModule.forFeature([{name: User.name, schema: UserSchema}])],
+  providers: [UsersService, AuthService, UsersRepository],
   controllers: [UsersController]
 })
 export class UsersModule {

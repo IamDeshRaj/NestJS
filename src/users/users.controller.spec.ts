@@ -1,7 +1,7 @@
 import { CreateUser } from '@mypleaks/ms-models';
 import { Test, TestingModule } from '@nestjs/testing';
-import { User } from '../models/entities/user.entity';
 import { AuthService } from './auth/auth.service';
+import { User } from './user.schema';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 
@@ -12,7 +12,7 @@ describe('UsersController', () => {
 
   beforeEach(async () => {
     authServiceMock = {
-      signup: (createUser: CreateUser) => Promise.resolve({ id: Math.floor(Math.random() * 99),
+      signup: (createUser: CreateUser) => Promise.resolve({ id: Math.floor(Math.random() * 99).toString(),
          email: createUser.email, password: createUser.password } as User),
     };
     usersServiceMock = {};

@@ -1,6 +1,6 @@
 import { CreateUser } from '@mypleaks/ms-models';
 import { Test } from '@nestjs/testing';
-import { User } from '../../models/entities/user.entity';
+import { User } from '../user.schema';
 import { UsersService } from '../users.service';
 import { AuthService } from './auth.service';
 
@@ -11,7 +11,7 @@ describe('AuthService', () => {
   beforeEach(async () => {
     userServiceMock = {
       find: () => Promise.resolve([]),
-      createUser: (user: CreateUser) => Promise.resolve({id: 1, email: user.email, password: user.password} as User)
+      createUser: (user: CreateUser) => Promise.resolve({id: 'askj123jnkasdn7yqe', email: user.email, password: user.password} as User)
     }
   
     const module = await Test.createTestingModule({
@@ -37,7 +37,7 @@ describe('AuthService', () => {
   });
 
   it('demo using async : test error thrown for existing user', async () => {
-    userServiceMock.find = () => Promise.resolve([{id: 1, email: 'abc@gmail.com', password: 'asdaec'} as User]);
+    userServiceMock.find = () => Promise.resolve([{id: 'askj123jnkasdn7yqe', email: 'abc@gmail.com', password: 'asdaec'} as User]);
     let user : User;
     try {
       user = await service.signup({email: 'abc@gmail.com', password: 'asdaec'});
@@ -47,7 +47,7 @@ describe('AuthService', () => {
   });
 
   it('demo using done : test error thrown for existing user', (done) => {
-    userServiceMock.find = () => Promise.resolve([{id: 1, email: 'abc@gmail.com', password: 'asdaec'} as User]);
+    userServiceMock.find = () => Promise.resolve([{id: 'askj123jnkasdn7yqe', email: 'abc@gmail.com', password: 'asdaec'} as User]);
     service.signup({email: 'abc@gmail.com', password: 'asdaec'}).then().catch((error: any)=>{
       console.log(error);
     })

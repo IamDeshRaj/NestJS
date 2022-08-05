@@ -2,10 +2,10 @@ import { Body, Controller, Delete, Get, Param, Patch, Post, Query, Session, UseG
 import { CurrentUser } from '../decorator/current-user.decorator';
 import { AuthGuard } from '../guards/auth.guard';
 import { CustomSerializer } from '../interceptors/custom-serializer.interceptor';
-import { User } from '../models/entities/user.entity';
 import { AuthService } from './auth/auth.service';
 import { UsersService } from './users.service';
 import { CreateUser, GetUser, UpdateUser } from '@mypleaks/ms-models';
+import { User } from './user.schema';
 
 @Controller('auth')
 export class UsersController {
@@ -30,7 +30,7 @@ export class UsersController {
         session.userId = null;
     }
 
-    @Post('/signin')
+    /*@Post('/signin')
     @CustomSerializer(GetUser)
     async signin(@Body() createUser: CreateUser, @Session() session: any) {
         const user = await this.authService.signin(createUser);
@@ -58,5 +58,5 @@ export class UsersController {
     @Patch('/:id')
     update(@Param('id') id: string, @Body() updateUser: UpdateUser) {
         return this.usersService.update(parseInt(id), updateUser);
-    }
+    }*/
 }

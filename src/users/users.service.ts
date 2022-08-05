@@ -1,25 +1,25 @@
 import { CreateUser } from '@mypleaks/ms-models';
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { User } from '../models/entities/user.entity';
+import { User } from './user.schema';
+import { UsersRepository } from './users.repository';
 
 @Injectable()
 export class UsersService {
 
-    constructor(@InjectRepository(User) private repo: Repository<User>) { }
+    constructor(private repo: UsersRepository) { }
 
-      // This way hooks will get executed
-    createUser(createUser: CreateUser) {
-        const user = this.repo.create(createUser);
-        return this.repo.save(user);
+    createUser(createUser: CreateUser): Promise<User> {
+        return this.repo.create(createUser);
     }
 
-    findOne(id: number) {
+    findAll(): Promise<User[]> {
+        return this.repo.findAll();
+    }
+    /*findOne(id: number) {
         if(!id){
             return null;
         }
-        const user = this.repo.findOne({ where: { id: id } });
+        const user = this.repo.findOne({ where: { id: id.toString() } });
         if (!user) {
             throw new Error('User not found');
         }
@@ -40,5 +40,5 @@ export class UsersService {
     async remove(id: number) {  // This way hooks will get executed
         const user = await this.findOne(id);
         return this.repo.remove(user);
-    }
+    }*/
 }
